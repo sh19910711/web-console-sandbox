@@ -1,0 +1,35 @@
+h1 web-console-sandbox
+
+div.prompt
+  input.input type="text"
+  button.run Run
+
+div.result
+
+javascript:
+  function eval(input) {
+    console.log(input);
+    return $.post({
+      url: '/eval',
+      data: {
+        input: input
+      }
+    });
+  }
+
+  function addResult(res) {
+    const result = $('.result');
+    const div = document.createElement('div');
+    div.innerText = res;
+    result.append(div);
+  }
+
+  $(_=> {
+    const prompt = $('.prompt');
+
+    $(document).on('click', '.run', _=> {
+      eval(prompt.children('.input').val()).done(res => {
+        addResult(res);
+      });
+    });
+  });

@@ -1,0 +1,3 @@
+[submodule "vendor/web-console"]
+	path = vendor/web-console
+	url = https://github.com/rails/web-console.git
